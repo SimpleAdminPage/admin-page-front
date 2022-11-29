@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Editor from "./Components/Editor";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import { useCreateNotice } from "../../hooks/useCreateNotice";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useUpdateNotice } from "../../hooks/useUpdateNotice";
 
 const ContainerDiv = styled.div`
   padding: 5vh 2vw 5vh;
@@ -37,18 +37,17 @@ interface CustomButtonProps {
   bgColor: string;
 }
 
-const NoticeCreate = () => {
-  const [title, setTitle] = useState("");
-  const [htmlContent, setHtmlContent] = useState("");
+const NoticeUpdate = () => {
+  const notice = useLocation().state.notice;
+  const [title, setTitle] = useState(notice.title);
+  const [htmlContent, setHtmlContent] = useState(notice.content);
   const navigate = useNavigate();
-  const createNoticeMutation = useCreateNotice();
+  const updateNoticeMutation = useUpdateNotice();
 
   const createNotice = () => {
-    const createInfo = { title: "", content: "" };
-    createInfo.title = title;
-    createInfo.content = htmlContent;
-    createNoticeMutation.mutate(createInfo);
-    navigate(`/`);
+    const updateInfo = { ...notice, ...{ title: title, content: htmlContent } };
+    updateNoticeMutation.mutate(updateInfo);
+    navigate(`../detail/${notice.id}`, { state: { notice: updateInfo }, replace: true });
   };
   const goBack = () => navigate(-1);
 
@@ -92,4 +91,4 @@ const NoticeCreate = () => {
   );
 };
 
-export default NoticeCreate;
+export default NoticeUpdate;

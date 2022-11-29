@@ -5,6 +5,7 @@ import Home from "./pages/Notice/Home";
 import NoticeCreate from "./pages/Notice/NoticeCreate";
 import NoticeDetail from "./pages/Notice/NoticeDetail";
 import styled from "styled-components";
+import NoticeUpdate from "./pages/Notice/NoticeUpdate";
 
 const MainNav = styled.nav`
   height: 20vh;
@@ -29,6 +30,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="create" element={<NoticeCreate />}></Route>
+        <Route path="detail/:noticeID/update/:noticeID" element={<NoticeUpdate />}></Route>
         <Route path="detail/:noticeID" element={<NoticeDetail />}></Route>
       </Routes>
     </div>

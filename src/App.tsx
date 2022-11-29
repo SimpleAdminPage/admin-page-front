@@ -24,12 +24,12 @@ const App = () => {
     <div>
       <GlobalStyle />
       <MainNav>
-        <TitleLink to={"/"}>Home</TitleLink>
+        <TitleLink to={"/"}>Administration</TitleLink>
       </MainNav>
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="create" element={<NoticeCreate />}></Route>
-        <Route path="detail" element={<NoticeDetail />}></Route>
+        <Route path="detail/:noticeID" element={<NoticeDetail />}></Route>
       </Routes>
     </div>
   );

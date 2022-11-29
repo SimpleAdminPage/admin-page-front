@@ -2,6 +2,13 @@ import React from "react";
 import { useNotices } from "../../../hooks/useNotices";
 import { NoticeType } from "../types";
 import NoticeListItem from "./NoticeItem";
+import styled from "styled-components";
+
+const NoticeListDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-top: 5vh;
+`;
 
 const NoticeList = () => {
   const { data, isError, isLoading } = useNotices();
@@ -21,11 +28,13 @@ const NoticeList = () => {
     );
 
   return (
-    <div>
-      {data.map((item: NoticeType) => (
-        <NoticeListItem notice={item} key={item.id}></NoticeListItem>
-      ))}
-    </div>
+    <NoticeListDiv>
+      <div>
+        {data.map((item: NoticeType) => (
+          <NoticeListItem notice={item} key={item.id}></NoticeListItem>
+        ))}
+      </div>
+    </NoticeListDiv>
   );
 };
 

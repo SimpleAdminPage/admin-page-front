@@ -24,7 +24,7 @@ const NoticeCreateButton = styled(Link)`
 const Home = () => {
   return (
     <div>
-      <NoticeCreateButton to={"create"}>작성하기</NoticeCreateButton>
+      <NoticeCreateButton to={"create"}>공지 작성하기</NoticeCreateButton>
       <NoticeList></NoticeList>
     </div>
   );

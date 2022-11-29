@@ -5,7 +5,6 @@ import styled from "styled-components";
 
 const NoticeDiv = styled.div`
   height: 7vh;
-  width: 55vw;
   display: flex;
   justify-content: space-between;
   padding: 0 2vw 0;
@@ -13,7 +12,12 @@ const NoticeDiv = styled.div`
   border-bottom: 1px solid #485652;
 `;
 const NoticeTitle = styled(Link)`
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  text-align: start;
+  width: 45vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: #6d7975;
   &:hover {
     color: #92c3b3;
@@ -21,6 +25,10 @@ const NoticeTitle = styled(Link)`
 `;
 const NoticeDate = styled.p`
   font-size: 1rem;
+  width: 10vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 interface NoticeProps {
@@ -30,7 +38,9 @@ interface NoticeProps {
 const NoticeListItem = ({ notice }: NoticeProps) => {
   return (
     <NoticeDiv>
-      <NoticeTitle to={`detail/${notice.id}`}>{notice.title}</NoticeTitle>
+      <NoticeTitle to={`detail/${notice.id}`} state={{ notice: notice }}>
+        {notice.title}
+      </NoticeTitle>
       <NoticeDate>{notice.createdTime}</NoticeDate>
     </NoticeDiv>
   );

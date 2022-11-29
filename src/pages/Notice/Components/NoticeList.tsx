@@ -5,14 +5,12 @@ import NoticeListItem from "./NoticeItem";
 import styled from "styled-components";
 
 const NoticeListDiv = styled.div`
-  display: flex;
-  justify-content: center;
   padding-top: 5vh;
+  text-align: center;
 `;
 
 const NoticeList = () => {
   const { data, isError, isLoading } = useNotices();
-
   if (isLoading)
     return (
       <div>
@@ -29,11 +27,15 @@ const NoticeList = () => {
 
   return (
     <NoticeListDiv>
-      <div>
-        {data.map((item: NoticeType) => (
-          <NoticeListItem notice={item} key={item.id}></NoticeListItem>
-        ))}
-      </div>
+      {data.length !== 0 ? (
+        <>
+          {data.map((item: NoticeType) => (
+            <NoticeListItem notice={item} key={item.id}></NoticeListItem>
+          ))}
+        </>
+      ) : (
+        <p>아직 공지가 없습니다</p>
+      )}
     </NoticeListDiv>
   );
 };

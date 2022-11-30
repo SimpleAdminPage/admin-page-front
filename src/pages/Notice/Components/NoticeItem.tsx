@@ -41,7 +41,7 @@ const NoticeListItem = ({ notice }: NoticeProps) => {
       <NoticeTitleLink to={`detail/${notice.id}`} state={{ notice: notice }}>
         {notice.title}
       </NoticeTitleLink>
-      <NoticeDate>{notice.createdTime}</NoticeDate>
+      <NoticeDate>{notice.createdTime.substr(0, 16)}</NoticeDate>
     </NoticeDiv>
   );
 };

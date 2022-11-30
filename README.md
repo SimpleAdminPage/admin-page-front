@@ -21,6 +21,8 @@ This is a simple admin page using React, TypeScript, React Query
 ```bash
 npm i
 ```
+**Note: Don't forget to add devDependencies!**
+
 2. Run
 ```bash
 npm start

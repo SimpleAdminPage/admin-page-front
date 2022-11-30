@@ -22,15 +22,15 @@ const TitleInput = styled.input`
   height: 4vh;
   border-color: #ccc;
 `;
+const ButtonBoxDiv = styled.div`
+  padding-top: 5vh;
+`;
 const CustomButton = styled.button<CustomButtonProps>`
   width: 15vw;
   padding: 10px 0 10px;
   background-color: ${(props) => props.bgColor};
   color: #ffffff;
   margin-left: 10px;
-`;
-const ButtonBoxDiv = styled.div`
-  padding-top: 5vh;
 `;
 
 interface CustomButtonProps {
@@ -42,13 +42,12 @@ const NoticeCreate = () => {
   const [htmlContent, setHtmlContent] = useState("");
   const navigate = useNavigate();
   const createNoticeMutation = useCreateNotice();
+  const titleMaxLength = 100;
 
   const createNotice = () => {
-    const createInfo = { title: "", content: "" };
-    createInfo.title = title;
-    createInfo.content = htmlContent;
+    const createInfo = { title: title, content: htmlContent };
     createNoticeMutation.mutate(createInfo);
-    navigate(`/`);
+    navigate(`/`); // go back Home
   };
   const goBack = () => navigate(-1);
 
@@ -64,7 +63,8 @@ const NoticeCreate = () => {
               <TitleInput
                 type="text"
                 id="title"
-                placeholder="제목을 입력하세요"
+                placeholder={`제목을 입력하세요.  (최대 ${titleMaxLength}자)`}
+                maxLength={titleMaxLength}
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               ></TitleInput>

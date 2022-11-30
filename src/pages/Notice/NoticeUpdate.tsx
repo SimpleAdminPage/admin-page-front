@@ -22,15 +22,15 @@ const TitleInput = styled.input`
   height: 4vh;
   border-color: #ccc;
 `;
+const ButtonBoxDiv = styled.div`
+  padding-top: 5vh;
+`;
 const CustomButton = styled.button<CustomButtonProps>`
   width: 15vw;
   padding: 10px 0 10px;
   background-color: ${(props) => props.bgColor};
   color: #ffffff;
   margin-left: 10px;
-`;
-const ButtonBoxDiv = styled.div`
-  padding-top: 5vh;
 `;
 
 interface CustomButtonProps {
@@ -43,11 +43,12 @@ const NoticeUpdate = () => {
   const [htmlContent, setHtmlContent] = useState(notice.content);
   const navigate = useNavigate();
   const updateNoticeMutation = useUpdateNotice();
+  const titleMaxLength = 100;
 
-  const createNotice = () => {
+  const updateNotice = () => {
     const updateInfo = { ...notice, ...{ title: title, content: htmlContent } };
     updateNoticeMutation.mutate(updateInfo);
-    navigate(`../detail/${notice.id}`, { state: { notice: updateInfo }, replace: true });
+    navigate(`../detail/${notice.id}`, { state: { notice: updateInfo } }); // go to Detail page
   };
   const goBack = () => navigate(-1);
 
@@ -63,7 +64,8 @@ const NoticeUpdate = () => {
               <TitleInput
                 type="text"
                 id="title"
-                placeholder="제목을 입력하세요"
+                placeholder={`제목을 입력하세요.  (최대 ${titleMaxLength}자)`}
+                maxLength={titleMaxLength}
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               ></TitleInput>
@@ -80,7 +82,7 @@ const NoticeUpdate = () => {
         </tbody>
       </NoticeTable>
       <ButtonBoxDiv>
-        <CustomButton type="submit" onClick={createNotice} bgColor="#9fa584">
+        <CustomButton type="submit" onClick={updateNotice} bgColor="#9fa584">
           저장
         </CustomButton>
         <CustomButton type="submit" onClick={goBack} bgColor="#8b8b8b">

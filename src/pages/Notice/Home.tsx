@@ -6,7 +6,7 @@ import styled from "styled-components";
 const ContainerDiv = styled.div`
   padding: 5vh 20vw 10vh;
 `;
-const ButtonContainer = styled.div`
+const ButtonContainerDiv = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
@@ -30,9 +30,9 @@ const NoticeCreateButton = styled(Link)`
 const Home = () => {
   return (
     <ContainerDiv>
-      <ButtonContainer>
+      <ButtonContainerDiv>
         <NoticeCreateButton to={"create"}>공지 작성하기</NoticeCreateButton>
-      </ButtonContainer>
+      </ButtonContainerDiv>
       <NoticeList></NoticeList>
     </ContainerDiv>
   );

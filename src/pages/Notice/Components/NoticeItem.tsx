@@ -11,7 +11,7 @@ const NoticeDiv = styled.div`
   align-items: center;
   border-bottom: 1px solid #485652;
 `;
-const NoticeTitle = styled(Link)`
+const NoticeTitleLink = styled(Link)`
   font-size: 1.2rem;
   text-align: start;
   width: 45vw;
@@ -38,9 +38,9 @@ interface NoticeProps {
 const NoticeListItem = ({ notice }: NoticeProps) => {
   return (
     <NoticeDiv>
-      <NoticeTitle to={`detail/${notice.id}`} state={{ notice: notice }}>
+      <NoticeTitleLink to={`detail/${notice.id}`} state={{ notice: notice }}>
         {notice.title}
-      </NoticeTitle>
+      </NoticeTitleLink>
       <NoticeDate>{notice.createdTime}</NoticeDate>
     </NoticeDiv>
   );
